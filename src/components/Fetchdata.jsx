@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../components/Fetchdata.css"; // Importing the CSS file
 
 const Fetchdata = () => {
     const [fetchedData, setFetchedData] = useState([]);
@@ -11,7 +12,7 @@ const Fetchdata = () => {
             let data = await res.json();
             console.log(data);
             setFetchedData(data);
-            setFilteredData(data); 
+            setFilteredData(data);
         } catch (e) {
             console.error("Error fetching data:", e);
         }
@@ -32,25 +33,27 @@ const Fetchdata = () => {
     };
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "20px", minHeight: "100vh", backgroundColor: "#f8f9fa" }}>
-            <div style={{ marginBottom: "20px" }}>
-                <label style={{ fontSize: "18px", fontWeight: "bold", marginRight: "10px" }}>Name:</label>
+        <div className="parent">
+        <div className="container">
+            <div className="search-container">
+                <label className="search-label">Name:</label>
                 <input
                     type="text"
                     value={search}
                     onChange={handleChange}
                     placeholder="Filter by name"
-                    style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px", outline: "none" }}
+                    className="search-input"
                 />
             </div>
-            <div style={{ width: "100%", maxWidth: "400px" }}>
+            <div className="data-container">
                 {filteredData.map((ele) => (
-                    <div key={ele.id} style={{ backgroundColor: "#fff", padding: "15px", marginBottom: "10px", borderRadius: "5px", boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", border: "1px solid #ddd" }}>
-                        <p style={{ fontSize: "16px", fontWeight: "bold", color: "#333" }}>{ele.name}</p>
-                        <p style={{ color: "#555" }}>{ele.email}</p>
+                    <div key={ele.id} className="card">
+                        <p className="card-title">{ele.name}</p>
+                        <p className="card-text">{ele.email}</p>
                     </div>
                 ))}
             </div>
+        </div>
         </div>
     );
 };
