@@ -2,7 +2,7 @@ import React from 'react'
 
 
 import './App.css'
-import Fetchdata from './components/fetchdata'
+import Fetchdata from './components/Fetchdata'
 
 function App() {
 return(
